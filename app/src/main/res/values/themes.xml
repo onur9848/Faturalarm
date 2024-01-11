@@ -1,0 +1,14 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Faturalarım" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="cardViewStyle">@style/Theme.OzetView</item>
+    </style>
+
+    <style name="Theme.Faturalarım" parent="Base.Theme.Faturalarım" />
+
+    <style name="Theme.OzetView" parent="CardView">
+        <item name="cardBackgroundColor">@color/blockOzetViewLight</item>
+    </style>
+</resources>

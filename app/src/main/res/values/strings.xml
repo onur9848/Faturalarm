@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Faturalarım</string>
+    <string name="son_okuma_tarihi">Son Okuma Tarihi</string>
+    <string name="ilk_okuma_tarihi">İlk Okuma Tarihi</string>
+    <string name="tek_tarife">Tek Tarife</string>
+    <string name="t1_t2_t3_tarife">T1-T2-T3 Tarife</string>
+    <string name="aral_k_ay">Aralık Ayı</string>
+</resources>
