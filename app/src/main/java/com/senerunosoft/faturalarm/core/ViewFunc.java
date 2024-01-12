@@ -4,6 +4,8 @@ import android.widget.EditText;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.Locale;
+
 public class ViewFunc {
 
     public static float getFloatView(EditText text) {
@@ -24,6 +26,14 @@ public class ViewFunc {
             }
         } else {
             return 0;
+        }
+    }
+
+    public static String setEditText(float value) {
+        if (value <= 0) {
+            return "";
+        } else {
+            return String.format(Locale.US,"%.3f", value);
         }
     }
 }

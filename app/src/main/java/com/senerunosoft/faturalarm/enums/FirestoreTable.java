@@ -12,7 +12,7 @@ public enum FirestoreTable {
     }
 
     public String getValue() {
-        boolean test = true;
+        boolean test = false;
         if (test) {
             return "test" + value;
         }

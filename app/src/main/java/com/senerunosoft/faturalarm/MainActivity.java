@@ -1,19 +1,24 @@
 package com.senerunosoft.faturalarm;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.View;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.senerunosoft.faturalarm.core.ViewFunc;
 import com.senerunosoft.faturalarm.databinding.ActivityMainBinding;
+import com.senerunosoft.faturalarm.enums.FirestoreTable;
 import com.senerunosoft.faturalarm.models.Fatura;
 import com.senerunosoft.faturalarm.models.FaturaInput;
 import com.senerunosoft.faturalarm.models.FiyatSabitleri;
+import com.senerunosoft.faturalarm.models.TekFazKwh;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -52,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         clickOnDrawableIcon(binding.ilkOkumaTarihi);
         clickOnDrawableIcon(binding.sonOkumaTarihi);
         setToggleSelected();
+        getLocalData();
         firestore = FirebaseFirestore.getInstance();
         binding.singleFaz.setOnClickListener(this::fazSelectionToggle);
         binding.threeFaz.setOnClickListener(this::fazSelectionToggle);
@@ -59,6 +65,21 @@ public class MainActivity extends AppCompatActivity {
         binding.receiptHistoryButton.setOnClickListener(this::receiptHistoryButton);
         binding.hesapla.setOnClickListener(this::hesapla);
     }
+
+    private void getLocalData() {
+        if (isThreeFaz) {
+            binding.gunduzT1Ilk.setText(ViewFunc.setEditText(sharedPreferences.getFloat("gunduz_t1_ilk", 0f)));
+            binding.gunduzT1Son.setText(ViewFunc.setEditText(sharedPreferences.getFloat("gunduz_t1_son", 0f)));
+            binding.puantT2Ilk.setText(ViewFunc.setEditText(sharedPreferences.getFloat("puant_t2_ilk", 0f)));
+            binding.puantT2Son.setText(ViewFunc.setEditText(sharedPreferences.getFloat("puant_t2_son", 0f)));
+            binding.geceT3Ilk.setText(ViewFunc.setEditText(sharedPreferences.getFloat("gece_t3_ilk", 0f)));
+            binding.geceT3Son.setText(ViewFunc.setEditText(sharedPreferences.getFloat("gece_t3_son", 0f)));
+        } else {
+            binding.ilkOkuma.getEditText().setText(ViewFunc.setEditText(sharedPreferences.getFloat("tek_zaman_ilk", 0f)));
+            binding.sonOkuma.getEditText().setText(ViewFunc.setEditText(sharedPreferences.getFloat("tek_zaman_son", 0f)));
+        }
+    }
+
 
     private void setToggleSelected() {
         isThreeFaz = sharedPreferences.getBoolean("is_three_faz", true);
@@ -116,17 +137,44 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void faturaKaydet(View view) {
+        FaturaInput input = getInputFromView();
+        Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.fatura_kaydet_dialog);
+        dialog.findViewById(R.id.kaydetButton).setOnClickListener(v -> {
+            input.setFaturaName(((TextInputLayout) dialog.findViewById(R.id.faturaAdiTextInputLayout)).getEditText().getText().toString());
+            kaydet(input);
+            dialog.dismiss();
+        });
+        dialog.findViewById(R.id.iptalButton).setOnClickListener(v -> dialog.dismiss());
+        dialog.show();
+
+    }
+
+    private void kaydet(FaturaInput input) {
+        input.setFaturaKayitTarihi(Calendar.getInstance().getTime());
+        firestore.collection(FirestoreTable.FATURAINPUTS.getValue()).add(input).addOnSuccessListener(documentReference -> {
+            input.setId(documentReference.getId());
+            firestore.collection(FirestoreTable.FATURAINPUTS.getValue()).document(documentReference.getId()).set(input).addOnSuccessListener(docRef -> {
+                Toast.makeText(context, "Fatura kaydedildi", Toast.LENGTH_SHORT).show();
+            });
+        });
+
     }
 
     private void hesapla(View view) {
         FaturaInput input = getInputFromView();
         Fatura fatura = new Fatura(input);
-        List<String> stringList = new ArrayList<>();
+        if (input.isThreeFaz()) {
+            TekFazKwh tekFazKwh = new TekFazKwh();
+            tekFazKwh = fatura.getUcFazKwh().getTekFazKwh();
+            binding.ilkOkuma.getEditText().setText(ViewFunc.setEditText(tekFazKwh.getTekFazSaat().getIlkKw()));
+            binding.sonOkuma.getEditText().setText(ViewFunc.setEditText(tekFazKwh.getTekFazSaat().getSonKw()));
+        }
         binding.dusukKademeToplamFiyat.setText(String.format("%.2f ₺", fatura.getDusukKademeToplamFiyat()));
         binding.yuksekKademeToplamFiyat.setText(String.format("%.2f ₺", fatura.getYuksekKademeToplamFiyat()));
         binding.elekVeHvgTukVerFiyat.setText(String.format("%.2f ₺", fatura.getElktVeHvg()));
         binding.kdvFiyat.setText(String.format("%.2f ₺", fatura.getKdv()));
-        binding.toplamFiyat.setText(String.format("%.2f ₺",fatura.getKdvliTutar()));
+        binding.toplamFiyat.setText(String.format("%.2f ₺", fatura.getKdvliTutar()));
 
     }
 
@@ -159,7 +207,25 @@ public class MainActivity extends AppCompatActivity {
             faturaInput.setElkVeHvgTktmVer(changedSabit.getElkVeHvgTktmVer());
         }
 
+        setInputsToLocal(faturaInput);
+
         return faturaInput;
+    }
+
+    private void setInputsToLocal(FaturaInput faturaInput) {
+        if (isThreeFaz) {
+            sharedPreferences.edit().putFloat("gunduz_t1_ilk", faturaInput.getGunduzIlkOkuma()).apply();
+            sharedPreferences.edit().putFloat("gunduz_t1_son", faturaInput.getGunduzSonOkuma()).apply();
+            sharedPreferences.edit().putFloat("puant_t2_ilk", faturaInput.getPuantIlkOkuma()).apply();
+            sharedPreferences.edit().putFloat("puant_t2_son", faturaInput.getPuantSonOkuma()).apply();
+            sharedPreferences.edit().putFloat("gece_t3_ilk", faturaInput.getGeceIlkOkuma()).apply();
+            sharedPreferences.edit().putFloat("gece_t3_son", faturaInput.getGeceSonOkuma()).apply();
+        } else {
+            sharedPreferences.edit().putFloat("tek_zaman_ilk", faturaInput.getTekZamanIlkOkuma()).apply();
+            sharedPreferences.edit().putFloat("tek_zaman_son", faturaInput.getTekZamanSonOkuma()).apply();
+        }
+
+
     }
 
     private void setDefaultDate() {

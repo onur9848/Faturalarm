@@ -1,11 +1,18 @@
 package com.senerunosoft.faturalarm;
+
+import android.view.View;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.senerunosoft.faturalarm.adapter.FaturaInputsAdapter;
+import com.senerunosoft.faturalarm.adapter.FaturaInputsAdapterListener;
 import com.senerunosoft.faturalarm.databinding.ActivityFaturaViewBinding;
 import com.senerunosoft.faturalarm.enums.FirestoreTable;
 import com.senerunosoft.faturalarm.models.Fatura;
+import com.senerunosoft.faturalarm.models.FaturaInput;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +22,7 @@ public class FaturaViewActivity extends AppCompatActivity {
     ActivityFaturaViewBinding binding;
     FirebaseFirestore firestore;
     SimpleDateFormat smp;
-    private List<Fatura> faturaList;
+    private List<FaturaInput> faturaList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,48 +31,28 @@ public class FaturaViewActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         defVariable();
 
-//        try {
-//            firestore.collection(FirestoreTable.FATURA.getValue()).get().addOnCompleteListener(task -> {
-//                if (task.isSuccessful()) {
-//                    task.getResult().getDocuments().forEach(documentSnapshot -> {
-//                        if (documentSnapshot.getData() != null) {
-//                            faturaList.add(new Fatura((HashMap<String, Object>) documentSnapshot.getData()));
-//                        }
-//                    });
-//                    setFaturaList();
-//                }
-//            });
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        firestore.collection(FirestoreTable.FATURAINPUTS.getValue()).get().addOnCompleteListener(task -> {
-//            if (task.isSuccessful()) {
-//                faturaInputs = task.getResult().toObjects(FaturaInputs.class);
-//                dataControl(task.getResult());
-//                setFaturaList();
-//            }
-//        });
+        firestore.collection(FirestoreTable.FATURAINPUTS.getValue()).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                faturaList = task.getResult().toObjects(FaturaInput.class);
+                setFaturaList();
+            }
+        });
 
     }
 
-//    private void dataControl(QuerySnapshot result) {
-//        // Id is ne columns in the data if Id is null then it is not in the data
-//        result.getDocuments().forEach(documentSnapshot -> {
-//            if (documentSnapshot.getData() != null) {
-//                FaturaInputs faturaInputs = documentSnapshot.toObject(FaturaInputs.class);
-//                faturaInputs.setId(documentSnapshot.getId());
-//                firestore.collection(FirestoreTable.FATURAINPUTS.getValue()).document(documentSnapshot.getId()).set(faturaInputs);
-//            }
-//        });
-//    }
-//
-//    private void setFaturaList() {
-//        faturaInputs.sort((o1, o2) -> o2.getCreatedAt().compareTo(o1.getCreatedAt()));
-//        FaturaInputsAdapter adapter = new FaturaInputsAdapter(this, (ArrayList<FaturaInputs>) faturaInputs);
-//        binding.expandableList.setAdapter(adapter);
-//
-//    }
+    private void setFaturaList() {
+
+        FaturaInputsAdapterListener listener = faturaInput -> {
+            Toast.makeText(FaturaViewActivity.this, faturaInput.getFaturaName(), Toast.LENGTH_SHORT).show();
+        };
+
+        faturaList.sort((o1, o2) -> o2.getFaturaKayitTarihi().compareTo(o1.getFaturaKayitTarihi()));
+        FaturaInputsAdapter adapter = new FaturaInputsAdapter(this, (ArrayList<FaturaInput>) faturaList, listener);
+        binding.expandableList.setAdapter(adapter);
+
+
+    }
+
 
     private void defVariable() {
         firestore = FirebaseFirestore.getInstance();
