@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FaturaInputDetailActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="FaturaInputDetailActivity"
+        android:id="@+id/textView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="20dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp">
+
+            <!--İlk Okuma Tarihi-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/guideline2"
+                app:cardCornerRadius="20dp"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:id="@+id/ilk_okuma_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:background="#3BFFFFFF"
+                    android:padding="10dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ilk Okuma Tarihi:" />
+
+                    <TextView
+                        android:id="@+id/ilk_okuma_tarihi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="11/11/1998"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Son Okuma Tarihi:" />
+
+                    <TextView
+                        android:id="@+id/son_okuma_tarihi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="11/11/1998"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!--Son Okuma Tarihi-->
+            <LinearLayout
+                android:id="@+id/son_okuma_layout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/guideline2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:id="@+id/fatura_adi"
+                    android:text="Ocak" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+android:background="#3BFFFFFF"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:text="28 Gün"
+                            android:id="@+id/gun_sayisi"
+                            android:textAlignment="center"
+                            android:textStyle="bold"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <LinearLayout
+                android:id="@+id/tableHeader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/guideline2"
+                android:gravity="end"
+                android:weightSum="9"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:theme="@style/Theme.BaslikTextView"
+                    android:layout_width="0dp"
+                    android:text="Ilk"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2" />
+
+                <TextView
+                    android:theme="@style/Theme.BaslikTextView"
+                    android:layout_width="0dp"
+                    android:text="Son"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2" />
+
+                <TextView
+                    android:theme="@style/Theme.BaslikTextView"
+                    android:text="Fark"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2" />
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tableHeader"
+                app:dividerColor="@color/black" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                app:layout_constraintBottom_toBottomOf="@+id/gece_layout"
+                app:dividerColor="@color/black" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:id="@+id/tuketim_bedeli_divider"
+                app:layout_constraintBottom_toBottomOf="@id/tuketim_bedeli_baslik_layout"
+                app:dividerColor="@color/black" />
+
+            <LinearLayout
+                android:id="@+id/gunduz_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tableHeader"
+                android:weightSum="9"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="Gündüz:"
+                    android:theme="@style/Theme.PuantTextView"
+                    android:layout_weight="3" />
+
+                <TextView
+                    android:theme="@style/Theme.EndeksTextView"
+                    android:id="@+id/t1_ilk_okuma"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2" />
+
+                <TextView
+                    android:theme="@style/Theme.EndeksTextView"
+                    android:layout_width="0dp"
+                    android:id="@+id/t1_son_okuma"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2" />
+
+                <TextView
+                    android:theme="@style/Theme.EndeksTextView"
+                    android:layout_width="0dp"
+                    android:id="@+id/t1_endeks_fark"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/puant_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/gunduz_layout"
+                android:weightSum="9"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:theme="@style/Theme.PuantTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="Puant:"
+                    android:layout_weight="3" />
+
+                <TextView
+                    android:theme="@style/Theme.EndeksTextView"
+                    android:layout_width="0dp"
+                    android:id="@+id/t2_ilk_okuma"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2" />
+
+
+                <TextView
+                    android:theme="@style/Theme.EndeksTextView"
+                    android:layout_width="0dp"
+                    android:id="@+id/t2_son_okuma"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2" />
+
+
+                <TextView
+                    android:theme="@style/Theme.EndeksTextView"
+                    android:layout_width="0dp"
+                    android:id="@+id/t2_endeks_fark"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/puant_layout"
+                android:id="@+id/gece_layout"
+                android:weightSum="9"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:theme="@style/Theme.PuantTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="Gece:"
+                    android:layout_weight="3" />
+
+                <TextView
+                    android:theme="@style/Theme.EndeksTextView"
+                    android:layout_width="0dp"
+                    android:id="@+id/t3_ilk_okuma"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2" />
+
+
+                <TextView
+                    android:theme="@style/Theme.EndeksTextView"
+                    android:layout_width="0dp"
+                    android:id="@+id/t3_son_okuma"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2" />
+
+
+                <TextView
+                    android:theme="@style/Theme.EndeksTextView"
+                    android:layout_width="0dp"
+                    android:id="@+id/t3_endeks_fark"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/toplam_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/gece_layout">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:text="Toplam"
+                    android:theme="@style/Theme.PuantTextView" />
+
+                <TextView
+                    android:id="@+id/toplam_ilk"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:theme="@style/Theme.EndeksTextView" />
+
+
+                <TextView
+                    android:id="@+id/toplam_son"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:theme="@style/Theme.EndeksTextView" />
+
+
+                <TextView
+                    android:id="@+id/toplam_fark"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:theme="@style/Theme.EndeksTextView" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/dusuk_kademe_layout"
+                app:layout_constraintTop_toBottomOf="@+id/tuketim_bedeli_divider"
+                android:weightSum="12">
+
+                <TextView
+                    android:theme="@style/Theme.EnerjiTuketimBedeli"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dusuk_kademe"
+                    android:layout_weight="5" />
+
+                <TextView
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:textSize="16sp"
+                    android:id="@+id/dusuk_kademe_carpim"
+                    android:text="0,00 x 0,00" />
+
+                <TextView
+                    style="@style/Theme.FiyatTextBox"
+                    android:id="@+id/dusuk_kademe_fiyat"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="0,00 ₺"
+                    android:layout_weight="3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/yuksek_kademe_layout"
+                app:layout_constraintTop_toBottomOf="@+id/dusuk_kademe_layout"
+                android:weightSum="12">
+
+                <TextView
+                    android:theme="@style/Theme.EnerjiTuketimBedeli"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yuksek_kademe"
+                    android:layout_weight="5" />
+
+                <TextView
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:textSize="16sp"
+                    android:id="@+id/yuksek_kademe_carpim"
+                    android:text="0,00 x 0,00" />
+
+                <TextView
+                    style="@style/Theme.FiyatTextBox"
+                    android:layout_width="0dp"
+                    android:id="@+id/yuksek_kademe_fiyat"
+                    android:layout_height="match_parent"
+                    android:text="0,00 ₺"
+                    android:layout_weight="3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tuketim_bedeli_baslik_layout"
+                app:layout_constraintTop_toBottomOf="@id/toplam_layout"
+                android:weightSum="12"
+                android:gravity="end"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:theme="@style/Theme.BaslikTextView"
+                    android:text="Tüketim x\n Birim Fiyat"
+                    android:layout_weight="4" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:text="Tutar"
+                    android:theme="@style/Theme.BaslikTextView" />
+
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                app:dividerColor="@color/black"
+                android:id="@+id/tuketim_bedeli_divider_end"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@id/yuksek_kademe_layout"
+                />
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                app:dividerColor="@color/black"
+                app:layout_constraintBottom_toTopOf="@id/toplam_fiyat_layout"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/elektrik_ve_hvg_tuketim_vergisi_layout"
+                app:layout_constraintTop_toBottomOf="@id/tuketim_bedeli_divider_end"
+                android:weightSum="6"
+                >
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:theme="@style/Theme.ToplamTextView"
+                    android:text="Elekt. ve Hvg. Tüketim Vergisi:"
+                    android:textSize="16sp"
+                    android:layout_weight="4"
+                    />
+
+                <TextView
+                    android:id="@+id/elektrik_ve_hvg_tuketim_vergisi"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:text="0.00 ₺"
+                    android:theme="@style/Theme.ToplamTLTextView" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/kdv_layout"
+                app:layout_constraintTop_toBottomOf="@id/elektrik_ve_hvg_tuketim_vergisi_layout"
+                android:weightSum="6"
+                >
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:theme="@style/Theme.ToplamTextView"
+                    android:text="KDV %10:"
+                    android:textSize="16sp"
+                    android:layout_weight="4"
+                    />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:theme="@style/Theme.ToplamTLTextView"
+                    android:id="@+id/kdv_fiyat"
+                    android:text="0.00 ₺"
+                    android:layout_weight="2"
+                    />
+
+            </LinearLayout>
+           <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/toplam_fiyat_layout"
+                app:layout_constraintTop_toBottomOf="@id/kdv_layout"
+                android:weightSum="6"
+                >
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:theme="@style/Theme.ToplamTextView"
+                    android:text="Toplam Tutar:"
+                    android:textSize="16sp"
+                    android:layout_weight="4"
+                    />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:theme="@style/Theme.ToplamTLTextView"
+                    android:id="@+id/toplam_tutar_fiyat"
+                    android:textStyle="bold|italic"
+                    android:text="0.00 ₺"
+                    android:layout_weight="2"
+                    />
+
+            </LinearLayout>
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.2" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

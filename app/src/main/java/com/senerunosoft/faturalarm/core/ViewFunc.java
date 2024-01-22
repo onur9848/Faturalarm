@@ -35,5 +35,15 @@ public class ViewFunc {
         } else {
             return String.format(Locale.US,"%.3f", value);
         }
+    }    public static String setEditTextWithTl(float value) {
+        if (value <= 0) {
+            return "";
+        } else {
+            return String.format(Locale.US,"%.3f ₺", value);
+        }
+    }
+
+    public static void MyLog(Object o) {
+        System.out.println("CustomLog: " + o.toString());
     }
 }

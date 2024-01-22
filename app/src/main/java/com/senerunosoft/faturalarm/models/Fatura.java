@@ -160,6 +160,27 @@ public class Fatura {
         return getKdvliTutar() - (getKdvsizTutar()+getElktVeHvg());
     }
 
+    public float getDusukKademeKullanim(){
+        float toplamKwh = getToplamKwh();
+        float dusukKademeLimit = faturaTarih.getGunSayisi() * sabitler.gunlukKullanimKw;
+        float dusukKademeKullanim = 0;
+        if (toplamKwh <= dusukKademeLimit) {
+            dusukKademeKullanim = toplamKwh;
+        } else {
+            dusukKademeKullanim = dusukKademeLimit;
+        }
+        return dusukKademeKullanim;
+    }
+
+    public float getYuksekKademeKullanim(){
+        float toplamKwh = getToplamKwh();
+        float dusukKademeLimit = faturaTarih.getGunSayisi() * sabitler.gunlukKullanimKw;
+        float yuksekKademeKullanim = 0;
+        if (toplamKwh > dusukKademeLimit) {
+            yuksekKademeKullanim = toplamKwh - dusukKademeLimit;
+        }
+        return yuksekKademeKullanim;
+    }
     public float getDusukKademeToplamFiyat() {
         float toplamKwh = getToplamKwh();
         float dusukKademeLimit = faturaTarih.getGunSayisi() * sabitler.gunlukKullanimKw;

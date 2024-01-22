@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -140,6 +141,8 @@ public class MainActivity extends AppCompatActivity {
         FaturaInput input = getInputFromView();
         Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.fatura_kaydet_dialog);
+        dialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
         dialog.findViewById(R.id.kaydetButton).setOnClickListener(v -> {
             input.setFaturaName(((TextInputLayout) dialog.findViewById(R.id.faturaAdiTextInputLayout)).getEditText().getText().toString());
             kaydet(input);

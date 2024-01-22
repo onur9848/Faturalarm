@@ -5,4 +5,9 @@
     <string name="tek_tarife">Tek Tarife</string>
     <string name="t1_t2_t3_tarife">T1-T2-T3 Tarife</string>
     <string name="aral_k_ay">Aralık Ayı</string>
+    <string name="fatura_adinin_giriniz">Fatura Adını Giriniz.</string>
+    <string name="kaydet">Kaydet</string>
+    <string name="iptal">İptal</string>
+    <string name="yuksek_kademe">Enerji Tüketim Bedeli\n(Yüksek Kademe)</string>
+    <string name="dusuk_kademe">Enerji Tüketim Bedeli\n(Düşük Kademe)</string>
 </resources>

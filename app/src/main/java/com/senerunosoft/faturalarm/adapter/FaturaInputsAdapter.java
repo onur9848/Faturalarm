@@ -22,16 +22,19 @@ public class FaturaInputsAdapter extends ArrayAdapter<FaturaInput> {
 
     private final LayoutInflater inflater;
     private final Context context;
-    private RecyclerView.ViewHolder holder;
     private final ArrayList<FaturaInput> faturaInputs;
-    private FaturaInputsAdapterListener listener;
-
-    public FaturaInputsAdapter(Context context, ArrayList<FaturaInput> faturaInputs, FaturaInputsAdapterListener listener ) {
+    OnItemClickListener listener;
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+    public interface OnItemClickListener {
+        void getItemDetails(FaturaInput input);
+    }
+    public FaturaInputsAdapter(Context context, ArrayList<FaturaInput> faturaInputs ) {
         super(context, 0, faturaInputs);
         this.context = context;
         this.faturaInputs = faturaInputs;
         inflater = LayoutInflater.from(context);
-        this.listener = listener;
     }
 
     @Override
@@ -79,11 +82,13 @@ public class FaturaInputsAdapter extends ArrayAdapter<FaturaInput> {
         holder.tutar.setText(String.format(Locale.US, "%.2f ₺", (fatura.getKdvliTutar(selectedFatura.getDusukKademeBirimFiyat(), selectedFatura.getYuksekKademeBirimFiyat()))));
         holder.faturaName.setText(selectedFatura.getFaturaName());
 
-        holder.infoBtn.setOnClickListener(v -> {
-            if (context instanceof FaturaInputsAdapterListener) {
-                ((FaturaInputsAdapterListener) context).onInfoBtnClick(selectedFatura);
+        holder.infoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.getItemDetails(selectedFatura);
             }
         });
+
 
         return convertView;
     }
