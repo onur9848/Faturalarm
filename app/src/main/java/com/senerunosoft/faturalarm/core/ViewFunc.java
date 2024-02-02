@@ -43,6 +43,14 @@ public class ViewFunc {
         }
     }
 
+    public static String setEditTextWithKwh(float value) {
+        if (value <= 0) {
+            return "";
+        } else {
+            return String.format(Locale.US,"%.3f Kw", value);
+        }
+    }
+
     public static void MyLog(Object o) {
         System.out.println("CustomLog: " + o.toString());
     }

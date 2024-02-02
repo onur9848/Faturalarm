@@ -34,26 +34,7 @@ public class FaturaInputDetailActivity extends AppCompatActivity {
         firestore.collection(FirestoreTable.FATURAINPUTS.getValue()).document(docId).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 FaturaInput faturaInput = task.getResult().toObject(FaturaInput.class);
-//                List<String> faturaDetaylari = new ArrayList<>();
-//                faturaDetaylari.add("Fatura No: " + faturaInput.getId());
-//                faturaDetaylari.add("Fatura Kayıt Tarihi: " + faturaInput.getFaturaKayitTarihi());
-//                faturaDetaylari.add("Fatura Adi: " + faturaInput.getFaturaName());
-//                faturaDetaylari.add("T1-ilk Okuma: " + faturaInput.getGunduzIlkOkuma());
-//                faturaDetaylari.add("T1-son Okuma: " + faturaInput.getGunduzSonOkuma());
-//                faturaDetaylari.add("T2-Tüketim: " + faturaInput.getPuantIlkOkuma());
-//                faturaDetaylari.add("T2-ilk Okuma: " + faturaInput.getPuantSonOkuma());
-//                faturaDetaylari.add("T3-Tüketim: " + faturaInput.getGeceIlkOkuma());
-//                faturaDetaylari.add("T3-ilk Okuma: " + faturaInput.getGeceSonOkuma());
-//                faturaDetaylari.add("İlk Okuma Tarihi: " + faturaInput.getIlkOkumaTarihi());
-//                faturaDetaylari.add("Son Okuma Tarihi: " + faturaInput.getSonOkumaTarihi());
-//                faturaDetaylari.add("Kdv: " + faturaInput.getVergiOrani());
-//                faturaDetaylari.add("Elkt ve Enerji Bedeli: " + faturaInput.getElkVeHvgTktmVer());
-//                faturaDetaylari.add("Tüketim Bedeli: " + faturaInput.getDagitimBedeliOrani());
-//                faturaDetaylari.add("Düşük Kademe Birim Fiyat: " + faturaInput.getDusukKademeBirimFiyat());
-//                faturaDetaylari.add("Yüksek Kademe Birim Fiyat: " + faturaInput.getYuksekKademeBirimFiyat());
-//                faturaDetaylari.add("Tek Zamanlı Tüketim: " + faturaInput.getTekZamanIlkOkuma());
-//                faturaDetaylari.add("Tek Zamanlı Tüketim: " + faturaInput.getTekZamanSonOkuma());
-//                binding.textView.setText(String.join("\n", faturaDetaylari));
+
                 faturaViewSetter(faturaInput);
             }
         });
@@ -95,6 +76,9 @@ public class FaturaInputDetailActivity extends AppCompatActivity {
         binding.elektrikVeHvgTuketimVergisi.setText(ViewFunc.setEditTextWithTl(fatura.getElktVeHvg()));
         binding.kdvFiyat.setText(ViewFunc.setEditTextWithTl(fatura.getKdv()));
         binding.toplamTutarFiyat.setText(ViewFunc.setEditTextWithTl(fatura.getKdvliTutar()));
+
+        // Ozel Hesaplamalar.
+        binding.ortalamaTuketim.setText(ViewFunc.setEditTextWithKwh(fatura.getOrtalamaTuketimKwh()));
 
     }
 

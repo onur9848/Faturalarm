@@ -534,8 +534,33 @@ android:background="#3BFFFFFF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.2" />
+                app:layout_constraintGuide_percent="0.3" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@id/guideline2"
+                android:weightSum="6"
+                >
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:theme="@style/Theme.ToplamTextView"
+                    android:text="Ortalam Tüketim:"
+                    android:textSize="16sp"
+                    android:layout_weight="4"
+                    />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:theme="@style/Theme.ToplamTLTextView"
+                    android:id="@+id/ortalama_tuketim"
+                    android:textStyle="bold|italic"
+                    android:text="817,00 kWh"
+                    android:layout_weight="2"
+                    />
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

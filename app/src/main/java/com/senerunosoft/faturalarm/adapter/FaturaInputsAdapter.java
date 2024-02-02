@@ -71,6 +71,7 @@ public class FaturaInputsAdapter extends ArrayAdapter<FaturaInput> {
             holder.tutar = convertView.findViewById(R.id.tutar_deger);
             holder.faturaName = convertView.findViewById(R.id.txtFaturaId);
             holder.infoBtn = convertView.findViewById(R.id.fatura_detay_btn);
+            holder.ekAciklamalarText = convertView.findViewById(R.id.ek_aciklamalar_text);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -81,6 +82,7 @@ public class FaturaInputsAdapter extends ArrayAdapter<FaturaInput> {
         holder.harcananKw.setText(String.format(Locale.US, "%.2f Kwh", harcanankw));
         holder.tutar.setText(String.format(Locale.US, "%.2f ₺", (fatura.getKdvliTutar(selectedFatura.getDusukKademeBirimFiyat(), selectedFatura.getYuksekKademeBirimFiyat()))));
         holder.faturaName.setText(selectedFatura.getFaturaName());
+        holder.ekAciklamalarText.setText(fatura.getEkAciklamalar());
 
         holder.infoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +100,7 @@ public class FaturaInputsAdapter extends ArrayAdapter<FaturaInput> {
         TextView tutar;
         TextView faturaName;
         ImageButton infoBtn;
+        TextView ekAciklamalarText;
     }
 }
 

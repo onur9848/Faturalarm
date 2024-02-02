@@ -9,7 +9,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         app:cardCornerRadius="20dp"
         app:cardBackgroundColor="#2DB39F"
         app:contentPadding="10dp">
@@ -79,7 +79,7 @@
                 android:textColor="#fff"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/ek_aciklamalar"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/harcananKwhtext" />
@@ -87,7 +87,7 @@
             <TextView
                 android:id="@+id/tutar_deger"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="60dp"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="5dp"
                 android:background="#6ACDB3"
@@ -96,10 +96,28 @@
                 android:textColor="#fff"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/ek_aciklamalar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/guideline3"
                 app:layout_constraintTop_toBottomOf="@+id/tutartext" />
+
+            <LinearLayout
+                android:id="@+id/ek_aciklamalar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:paddingVertical="4dp"
+                    android:paddingHorizontal="10dp"
+                    android:id="@+id/ek_aciklamalar_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Deneme"
+                    />
+
+            </LinearLayout>
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline3"

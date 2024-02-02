@@ -1,6 +1,9 @@
 package com.senerunosoft.faturalarm.models;
 
+import com.senerunosoft.faturalarm.core.ViewFunc;
+
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Fatura {
@@ -193,6 +196,9 @@ public class Fatura {
         return dusukKademeToplamFiyat;
     }
 
+    public float getOrtalamaTuketimKwh(){
+        return getToplamKwh() / faturaTarih.getGunSayisi();
+    }
     public float getYuksekKademeToplamFiyat() {
         float toplamKwh = getToplamKwh();
         float dusukKademeLimit = faturaTarih.getGunSayisi() * sabitler.gunlukKullanimKw;
@@ -201,5 +207,13 @@ public class Fatura {
             yuksekKademeToplamFiyat = (toplamKwh - dusukKademeLimit) * sabitler.getYuksekKademeBirimFiyat();
         }
         return yuksekKademeToplamFiyat;
+    }
+
+    public String getEkAciklamalar(){
+        ArrayList<String> ekAciklamalar = new ArrayList<>();
+        ekAciklamalar.add("*Ortalama Elektrik Tüketimi: " + ViewFunc.setEditTextWithKwh(getOrtalamaTuketimKwh()));
+
+
+        return String.join("\n", ekAciklamalar);
     }
 }
