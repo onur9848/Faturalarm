@@ -1,16 +1,14 @@
-package com.senerunosoft.faturalarm;
+package com.senerunosoft.faturalarm.views;
 
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import androidx.lifecycle.ViewModelProvider;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.senerunosoft.faturalarm.adapter.FaturaInputsAdapter;
 import com.senerunosoft.faturalarm.databinding.ActivityFaturaViewBinding;
 import com.senerunosoft.faturalarm.enums.BundleKeys;
 import com.senerunosoft.faturalarm.enums.FirestoreTable;
 import com.senerunosoft.faturalarm.models.FaturaInput;
-import com.senerunosoft.faturalarm.viewmodels.FaturaInputViewModel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

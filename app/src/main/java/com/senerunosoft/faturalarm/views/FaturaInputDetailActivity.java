@@ -1,4 +1,4 @@
-package com.senerunosoft.faturalarm;
+package com.senerunosoft.faturalarm.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;

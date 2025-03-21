@@ -1,4 +1,4 @@
-package com.senerunosoft.faturalarm;
+package com.senerunosoft.faturalarm.views;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -10,11 +10,11 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.senerunosoft.faturalarm.R;
 import com.senerunosoft.faturalarm.core.ViewFunc;
-import com.senerunosoft.faturalarm.databinding.ActivityMainBinding;
+import com.senerunosoft.faturalarm.databinding.ActivityFaturaBinding;
 import com.senerunosoft.faturalarm.enums.FirestoreTable;
 import com.senerunosoft.faturalarm.models.Fatura;
 import com.senerunosoft.faturalarm.models.FaturaInput;
@@ -25,9 +25,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class MainActivity extends AppCompatActivity {
+public class FaturaActivity extends AppCompatActivity {
 
-    ActivityMainBinding binding;
+    ActivityFaturaBinding binding;
     SimpleDateFormat smp;
     SharedPreferences sharedPreferences;
     boolean isThreeFaz = true;
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityFaturaBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         context = this;
         defVariables();
@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         layout.setStartIconOnClickListener(l -> {
             Calendar cal = Calendar.getInstance();
             DatePickerDialog dialog = new DatePickerDialog(
-                    MainActivity.this,
+                    FaturaActivity.this,
                     android.R.style.Theme_Material_Dialog_MinWidth,
                     (view, year, month, dayOfMonth) -> {
                         cal.set(year, month, dayOfMonth);

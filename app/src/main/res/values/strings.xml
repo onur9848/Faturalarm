@@ -10,4 +10,6 @@
     <string name="iptal">İptal</string>
     <string name="yuksek_kademe">Enerji Tüketim Bedeli\n(Yüksek Kademe)</string>
     <string name="dusuk_kademe">Enerji Tüketim Bedeli\n(Düşük Kademe)</string>
+    <string name="fatura_hesapla">Fatura Hesapla</string>
+    <string name="not_ekran">Not Ekranı</string>
 </resources>

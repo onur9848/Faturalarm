@@ -21,18 +21,19 @@ import java.util.Locale;
 public class FaturaInputsAdapter extends ArrayAdapter<FaturaInput> {
 
     private final LayoutInflater inflater;
-    private final Context context;
     private final ArrayList<FaturaInput> faturaInputs;
     OnItemClickListener listener;
+
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
+
     public interface OnItemClickListener {
         void getItemDetails(FaturaInput input);
     }
-    public FaturaInputsAdapter(Context context, ArrayList<FaturaInput> faturaInputs ) {
+
+    public FaturaInputsAdapter(Context context, ArrayList<FaturaInput> faturaInputs) {
         super(context, 0, faturaInputs);
-        this.context = context;
         this.faturaInputs = faturaInputs;
         inflater = LayoutInflater.from(context);
     }

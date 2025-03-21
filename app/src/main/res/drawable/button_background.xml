@@ -1,0 +1,27 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Buton basıldığında -->
+    <item android:state_pressed="true">
+        <shape>
+            <solid android:color="#303F9F" /> <!-- Basılı durum rengi -->
+            <corners android:radius="24dp" />
+            <padding
+                android:left="16dp"
+                android:top="16dp"
+                android:right="16dp"
+                android:bottom="16dp" />
+        </shape>
+    </item>
+
+    <!-- Normal durum -->
+    <item>
+        <shape>
+            <solid android:color="#3F51B5" /> <!-- Normal durum rengi -->
+            <corners android:radius="24dp" />
+            <padding
+                android:left="16dp"
+                android:top="16dp"
+                android:right="16dp"
+                android:bottom="16dp" />
+        </shape>
+    </item>
+</selector>

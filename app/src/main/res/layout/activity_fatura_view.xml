@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="horizontal"
-    tools:context=".FaturaViewActivity">
+    tools:context=".views.FaturaViewActivity">
 
     <ListView
         android:layout_marginTop="10dp"
